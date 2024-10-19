@@ -1,6 +1,6 @@
 import type { FileService } from './FileService'
 import type { GitService } from './GitService'
-import { CommitOrder } from './types'
+import { CommitOrder, type CommitOptions } from './types'
 
 export class CommitController {
   private minDate = Date.parse('2004-01-01')
@@ -10,10 +10,7 @@ export class CommitController {
     private gitService: GitService
   ) {}
 
-  public async commit(
-    order: CommitOrder,
-    { from, to = new Date() }: { from?: Date; to?: Date }
-  ) {
+  public async commit({ order, fromDate, toDate = new Date() }: CommitOptions) {
     const files = await this.fileService.readFilesInDir()
 
     const randomDates: Date[] = []
@@ -34,12 +31,14 @@ export class CommitController {
       default:
         files.sort((a, b) => Math.random() - 0.5)
         for (let i = 0; i < files.length; i++) {
-          if (!from) {
+          if (!fromDate) {
             const diff = Date.now() - this.minDate
-            randomDates.push(new Date(to.getTime() - Math.random() * diff))
+            randomDates.push(new Date(toDate.getTime() - Math.random() * diff))
           } else {
-            const diff = to.getTime() - from.getTime()
-            randomDates.push(new Date(from.getTime() + Math.random() * diff))
+            const diff = toDate.getTime() - fromDate.getTime()
+            randomDates.push(
+              new Date(fromDate.getTime() + Math.random() * diff)
+            )
           }
         }
         randomDates.sort((a, b) => a.getTime() - b.getTime())
