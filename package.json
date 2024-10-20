@@ -3,6 +3,8 @@
   "module": "src/index.ts",
   "type": "module",
   "scripts": {
+    "start": "bun ./src/index.ts",
+    "format": "prettier --write ./src",
     "sample": "bun ./sample/generateSample.ts",
     "commit-sample": "bun ./src/index.ts -dir ./sample"
   },
