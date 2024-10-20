@@ -28,7 +28,7 @@ export class CommitController {
       case CommitOrder.MtimeDsc:
         files.sort((a, b) => b.mtime - a.mtime)
         break
-      default:
+      case CommitOrder.Random:
         files.sort((a, b) => Math.random() - 0.5)
         for (let i = 0; i < files.length; i++) {
           if (!fromDate) {
