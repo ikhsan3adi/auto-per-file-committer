@@ -16,7 +16,7 @@ export class ArgHandler {
       .option('-dsc', 'Commit files in descending order')
       .option(
         '--sort-by [type]',
-        'Sort by birthtime or mtime(modified time) (default: mtime)',
+        'Sort by birthtime, mtime(modified time) or none (default: mtime)',
         'mtime'
       )
       .option(
@@ -33,27 +33,30 @@ export class ArgHandler {
 
     const options = program.opts()
 
-    if (options.random) {
-      options.order = CommitOrder.Random
-    } else if (options.Dsc) {
-      if (options.sortBy === 'birthtime') {
-        options.order = CommitOrder.BirthDsc
-      } else {
-        options.order = CommitOrder.MtimeDsc
-      }
-    } else {
-      if (options.sortBy === 'birthtime') {
-        options.order = CommitOrder.BirthAsc
-      } else {
-        options.order = CommitOrder.MtimeAsc
-      }
-    }
 
-    return {
+    const commitOptions: CommitOptions = {
       dir: options.Dir,
-      order: options.order,
+      order: CommitOrder.NoDate,
       fromDate: options.from,
       toDate: options.to,
     }
+
+    if (options.random) {
+      commitOptions.order = CommitOrder.Random
+    } else if (options.Dsc) {
+      if (options.sortBy === 'birthtime') {
+        commitOptions.order = CommitOrder.BirthDsc
+      } else if (options.sortBy === 'mtime') {
+        commitOptions.order = CommitOrder.MtimeDsc
+      }
+    } else {
+      if (options.sortBy === 'birthtime') {
+        commitOptions.order = CommitOrder.BirthAsc
+      } else if (options.sortBy === 'mtime') {
+        commitOptions.order = CommitOrder.MtimeAsc
+      }
+    }
+
+    return commitOptions
   }
 }

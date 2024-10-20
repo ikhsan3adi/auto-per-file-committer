@@ -2,8 +2,8 @@ import simpleGit from 'simple-git'
 import type { CustomFileStat } from './types'
 
 export class GitService {
-  public async commit(file: CustomFileStat, date: Date) {
-    console.log(`Commit ${file.path}...`)
+  public async commit(file: CustomFileStat, date: Date = new Date()) {
+    console.log(`Commit ${file.path} with date: ${date.toISOString()}...`)
 
     const git = simpleGit()
 

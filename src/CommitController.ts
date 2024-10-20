@@ -46,7 +46,7 @@ export class CommitController {
     }
 
     for (let i = 0; i < files.length; i++) {
-      let date: Date
+      let date: Date | undefined = undefined
 
       switch (order) {
         case CommitOrder.BirthAsc:

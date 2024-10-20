@@ -11,6 +11,7 @@ export enum CommitOrder {
   MtimeAsc,
   MtimeDsc,
   Random,
+  NoDate,
 }
 
 export interface CommitOptions {
