@@ -10,7 +10,7 @@ export class ArgHandler {
 
   public parseArgs(): CommitOptions {
     program
-      .option('-dir [dir]', 'Specify the directory to commit (default: .)', '.')
+      .option('-dir <dir>', 'Specify the directory to commit')
       .option('-r, --random', 'Commit files in random order')
       .option('-asc', 'Commit files in ascending order') // default
       .option('-dsc', 'Commit files in descending order')
@@ -33,6 +33,11 @@ export class ArgHandler {
 
     const options = program.opts()
 
+    if (!options.Dir) {
+      program.outputHelp()
+      console.error('Please specify the directory to commit')
+      process.exit(1)
+    }
 
     const commitOptions: CommitOptions = {
       dir: options.Dir,
