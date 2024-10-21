@@ -14,7 +14,9 @@ export class GitService {
       })
       console.log(`Successfully committed ${file.path}`)
     } catch (_) {
-      console.error(`Failed to commit ${file.path}`)
+      console.error(
+        `Failed to commit ${file.path}. Maybe it's in .gitignore. Skipping...`
+      )
     }
   }
 }
