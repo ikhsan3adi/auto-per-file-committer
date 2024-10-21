@@ -5,7 +5,18 @@ Automated tool that commits files one by one to a version control repository, su
 ## Usage
 
 ```shell
-bun start -dir <YOUR REPO PATH>
+cd <YOUR REPO PATH>
+bun <PATH TO THIS REPO/src/index.ts> -dir <YOUR REPO PATH(must be current directory)>
 ```
 
-Run `bun start --help` for more information.
+Example:
+
+```shell
+cd dir/my-repo
+bun ../auto-per-file-committer/src/index.ts -dir .
+
+# dir/my-repo
+# dir/auto-per-file-committer
+```
+
+Run `bun start --help` in the `auto-per-file-committer` directory for more information.
