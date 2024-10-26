@@ -7,6 +7,13 @@ export class GitService {
 
     const git = simpleGit()
 
+    const ignored = Boolean((await git.checkIgnore(file.path))[0])
+
+    if (ignored) {
+      console.log(`${file.path} is in .gitignore. Skipping...`)
+      return
+    }
+
     try {
       await git.add(file.path)
       await git.commit(`Create/Modify ${file.name}`, {
@@ -14,9 +21,7 @@ export class GitService {
       })
       console.log(`Successfully committed ${file.path}`)
     } catch (_) {
-      console.error(
-        `Failed to commit ${file.path}. Maybe it's in .gitignore. Skipping...`
-      )
+      console.error(`Failed to commit ${file.path}. Skipping...`)
     }
   }
 }
