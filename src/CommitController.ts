@@ -22,10 +22,10 @@ export class CommitController {
       case CommitOrder.BirthDsc:
         files.sort((a, b) => b.birthtime - a.birthtime)
         break
-      case CommitOrder.MtimeAsc:
+      case CommitOrder.MTimeAsc:
         files.sort((a, b) => a.mtime - b.mtime)
         break
-      case CommitOrder.MtimeDsc:
+      case CommitOrder.MTimeDsc:
         files.sort((a, b) => b.mtime - a.mtime)
         break
       case CommitOrder.Random:
@@ -53,8 +53,8 @@ export class CommitController {
         case CommitOrder.BirthDsc:
           date = new Date(files[i].birthtime)
           break
-        case CommitOrder.MtimeAsc:
-        case CommitOrder.MtimeDsc:
+        case CommitOrder.MTimeAsc:
+        case CommitOrder.MTimeDsc:
           date = new Date(files[i].mtime)
           break
         case CommitOrder.Random:
