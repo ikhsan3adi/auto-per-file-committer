@@ -52,13 +52,13 @@ export class ArgHandler {
       if (options.sortBy === 'birthtime') {
         commitOptions.order = CommitOrder.BirthDsc
       } else if (options.sortBy === 'mtime') {
-        commitOptions.order = CommitOrder.MtimeDsc
+        commitOptions.order = CommitOrder.MTimeDsc
       }
     } else {
       if (options.sortBy === 'birthtime') {
         commitOptions.order = CommitOrder.BirthAsc
       } else if (options.sortBy === 'mtime') {
-        commitOptions.order = CommitOrder.MtimeAsc
+        commitOptions.order = CommitOrder.MTimeAsc
       }
     }
 

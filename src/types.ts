@@ -8,8 +8,8 @@ export type CustomFileStat = {
 export enum CommitOrder {
   BirthAsc,
   BirthDsc,
-  MtimeAsc,
-  MtimeDsc,
+  MTimeAsc,
+  MTimeDsc,
   Random,
   NoDate,
 }
