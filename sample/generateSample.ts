@@ -7,9 +7,7 @@ for (let index = 0; index < 5; index++) {
       path.join(__dirname, `sample-${index}.txt`),
       'Hello, World!',
       (err) => {
-        if (err) {
-          console.error(err)
-        }
+        if (err) console.error(err)
       }
     )
   }, 1000)
